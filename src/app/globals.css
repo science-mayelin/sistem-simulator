@@ -71,3 +71,38 @@ body {
 .slide-in-from-bottom-4 {
   animation: slide-in-from-bottom 0.5s ease-out;
 }
+
+/* Scroll vertical personalizado — p. ej. /noticias */
+.noticias-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245 158 11, 0.45) rgba(24, 24, 27, 0.85);
+}
+
+.noticias-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.noticias-scroll::-webkit-scrollbar-track {
+  margin: 4px 0;
+  background: rgba(24, 24, 27, 0.75);
+  border-radius: 9999px;
+}
+
+.noticias-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(251, 191, 36, 0.5),
+    rgba(245, 158, 11, 0.35)
+  );
+  border-radius: 9999px;
+  border: 2px solid rgba(9, 9, 11, 0.9);
+}
+
+.noticias-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(252, 211, 77, 0.65),
+    rgba(245, 158, 11, 0.5)
+  );
+}

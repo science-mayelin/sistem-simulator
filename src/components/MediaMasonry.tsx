@@ -296,12 +296,12 @@ export default function MediaMasonry() {
   return (
     <main
       ref={scrollContainerRef}
-      className={`h-screen overflow-y-auto bg-black px-4 pb-10 pt-24 text-zinc-100 transition-[filter] duration-500 md:px-6 ${
+      className={`h-screen w-full overflow-y-auto bg-black px-3 pb-10 pt-20 text-zinc-100 transition-[filter] duration-500 sm:px-4 sm:pt-24 md:px-5 lg:px-6 ${
         autoScrollEnabled ? "scroll-smooth saturate-110" : ""
       }`}
     >
       <AppMenu />
-      <div className="mx-auto mb-6 max-w-6xl">
+      <div className="mb-6 w-full">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Media NASA</h1>
@@ -341,53 +341,22 @@ export default function MediaMasonry() {
               </select>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={() => setAutoScrollEnabled((v) => !v)}
-            className={`rounded-lg border px-3 py-2 text-xs font-semibold transition ${
-              autoScrollEnabled
-                ? "border-amber-300/50 bg-amber-500/20 text-amber-100"
-                : "border-white/15 bg-white/5 text-zinc-200 hover:bg-white/10"
-            }`}
-          >
-            {autoScrollEnabled ? "Pausar desplazamiento" : "Play desplazamiento"}
-          </button>
-          <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-black/40 p-1">
-            {[
-              { id: "slow", label: "Lento" },
-              { id: "medium", label: "Medio" },
-              { id: "fast", label: "Rápido" },
-            ].map((opt) => (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() =>
-                  setAutoScrollSpeed(opt.id as "slow" | "medium" | "fast")
-                }
-                className={`rounded-md px-2 py-1 text-[11px] font-medium transition ${
-                  autoScrollSpeed === opt.id
-                    ? "bg-amber-500/25 text-amber-100"
-                    : "text-zinc-300 hover:bg-white/10"
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
+
+
         </div>
       </div>
 
       {isLoading && (
-        <p className="mx-auto max-w-6xl text-sm text-zinc-400">Cargando media de NASA...</p>
+        <p className="w-full text-sm text-zinc-400">Cargando media de NASA...</p>
       )}
       {error && (
-        <p className="mx-auto max-w-6xl text-sm text-red-400">
+        <p className="w-full text-sm text-red-400">
           Error cargando media: {error instanceof Error ? error.message : "desconocido"}
         </p>
       )}
 
       {filteredItems.length > 0 && (
-        <section className="mx-auto max-w-6xl columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <section className="w-full columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4 2xl:columns-5">
           {filteredItems.map((item) => {
             const video = isVideo(item);
             const imgSrc = item.thumbnail_url || item.hdurl || item.url;
@@ -459,9 +428,9 @@ export default function MediaMasonry() {
         </section>
       )}
       {!isLoading && !error && filteredItems.length === 0 && (
-        <p className="mx-auto max-w-6xl text-sm text-zinc-500">No hay elementos para mostrar.</p>
+        <p className="w-full text-sm text-zinc-500">No hay elementos para mostrar.</p>
       )}
-      <div ref={loadMoreRef} className="mx-auto mt-8 max-w-6xl py-6 text-center text-xs text-zinc-500">
+      <div ref={loadMoreRef} className="mt-8 w-full py-6 text-center text-xs text-zinc-500">
         {!canLoadMore
           ? "Limite de carga alcanzado"
           : isLoadingMore
@@ -471,7 +440,7 @@ export default function MediaMasonry() {
 
       {selectedItem && (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-200 ${
+          className={`fixed inset-0 z-[60] flex items-center justify-center p-4 transition-opacity duration-200 ${
             isModalClosing ? "bg-black/0 opacity-0" : "bg-black/85 opacity-100"
           }`}
           onClick={closeModal}
